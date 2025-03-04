@@ -1,0 +1,87 @@
+/* General Styles */
+body {
+    background-color: #181818;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+/* Heading */
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Input and Button Container */
+form div {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Input Field */
+input {
+    padding: 10px;
+    width: 250px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+}
+
+/* Add Button */
+.btn {
+    background-color: #ffeb3b;
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #fdd835;
+}
+
+/* Todo List Container */
+.todo-list-elm {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Todo Item */
+.main-todo-div {
+    display: flex;
+    align-items: center;
+    background-color: #222;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+    width: 300px;
+    justify-content: space-between;
+}
+
+/* List Item */
+.main-todo-div li {
+    list-style: none;
+    font-size: 1.2rem;
+    color: white;
+}
+
+/* Delete Button */
+.deletebtn {
+    background-color: #ffeb3b;
+    color: black;
+    border: none;
+    padding: 8px 12px;  
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.deletebtn:hover {
+    background-color: #fdd835;
+}

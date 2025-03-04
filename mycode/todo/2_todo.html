@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Todo List</h1>
+    <br />
+
+    <form>
+        <div>
+            <input type="text" id="inputValue" placeholder="Write Hear ..." />
+            <button class="btn">Add Todo</button>
+        </div>
+        <section class="todo-list-elm">
+
+        </section>
+    </form>
+    <script>
+        const maintodo=document.querySelector(".todo-list-elm");
+        const inputValue=document.getElementById("inputValue");
+        let localtodolist=[];
+
+        localtodolist=JSON.parse(localStorage.getItem("todolist")) || [];
+
+        const addTodoDynamicElm=(currElm)=>{
+            const divElement=document.createElement("div");
+            divElement.classList.add("main-todo-div");
+            divElement.innerHTML=`<li>${currElm}</li> <button class="deletebtn">Delete</button>`;
+            maintodo.append(divElement);
+        };
+        const addTodoList=(e)=>{
+            e.preventDefault();
+
+            const input1=inputValue.value.trim();
+            inputValue.value="";
+
+            if(input1 && !localtodolist.includes(input1)){
+                localtodolist.push(input1);
+                localtodolist= [...new Set(localtodolist)];
+                console.log(localtodolist); 
+                localStorage.setItem("todolist",JSON.stringify(localtodolist));
+                
+                addTodoDynamicElm(input1);
+            }
+        };
+
+        const showTodoList=()=>{
+            localtodolist.forEach((currElm)=>{
+                addTodoDynamicElm(currElm);
+            })
+        };
+        showTodoList();
+
+        const removeTodo=(e)=>{
+            let todoContent=e.target.previousElementSibling.innerText;
+            let parentElm=e.target.parentElement;
+            console.log(todoContent);
+
+            localtodolist=localtodolist.filter((currElm)=>{
+                return currElm!==todoContent;
+            })
+            localStorage.setItem("todolist",JSON.stringify(localtodolist));
+            parentElm.remove();
+            console.log(localtodolist);
+        };
+
+        maintodo.addEventListener("click",(e)=>{
+            e.preventDefault();
+            if(e.target.classList.contains("deletebtn")){
+            removeTodo(e);}
+        });
+        document.querySelector(".btn").addEventListener("click",(e)=>{addTodoList(e);});
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+          text-align: center;
+          margin-bottom: 3.2rem;
+        }
+        .mainBody {
+          gap: 1.4rem;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        .element {
+          width: 8rem;
+          height: 8rem;
+          margin: 5px;
+          border: 1px solid #d6417a;
+          border-radius: 1rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          font-size: 1.6rem;
+          box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+            rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  
+          &:hover {
+            background-color: #d6417a;
+            color: #000;
+          }
+        }
+      </style>
+</head>
+<body>
+    <h1>Event Delegation - Preodic Table</h1>
+    <section class="mainBody"></section>
+    <script>
+        
+        const createPreodicElm=(symbol,atomicNumber,name)=>{
+            const elm=document.createElement("div");
+            elm.classList.add("element");
+            elm.innerHTML=symbol;
+
+            elm.setAttribute("element_atomic_number",atomicNumber);
+            elm.setAttribute("element_name",name);
+            
+            return elm;
+        };
+        const preodicTable=()=>{
+            const mainBody=document.querySelector(".mainBody");
+
+            for(let i=1;i<=50;i++){
+                const element=createPreodicElm(`Elem${i}`,i,`Element ${i}`);
+                mainBody.append(element);
+            }
+
+            mainBody.addEventListener("click",(e)=>{
+                if(e.target.classList.contains("element")){
+                    alert(`Atomic Number : ${e.target.getAttribute("element_atomic_number")} \nElement Name: ${e.target.getAttribute("element_name")}`);
+                }
+            });
+        };
+        preodicTable();
+    </script>
+</body>
+</html>
